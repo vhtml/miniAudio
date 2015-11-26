@@ -1,0 +1,83 @@
+.v-mini-audio {
+  position: relative;
+  font-size: 30px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: #0cc;
+}
+.v-mini-audio audio {
+  display: none !important;
+}
+.v-mini-audio .audio-left,
+.v-mini-audio .audio-right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.v-mini-audio .audio-left .inner,
+.v-mini-audio .audio-right .inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00aacc;
+  border-radius: 50%;
+}
+.v-mini-audio .audio-left,
+.v-mini-audio .audio-left .inner {
+  clip: rect(0, 0.5em, auto, 0);
+}
+.v-mini-audio .audio-right,
+.v-mini-audio .audio-right .inner {
+  clip: rect(0, auto, auto, 0.5em);
+}
+.v-mini-audio .audio-control {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: .75em;
+  height: .75em;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.v-mini-audio .audio-control:before,
+.v-mini-audio .audio-control:after {
+  position: absolute;
+  content: '';
+}
+.v-mini-audio .audio-control.play:before {
+  left: 0.1em;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: .2em 0 .2em .3em;
+  border-left-color: #f30;
+}
+.v-mini-audio .audio-control.pause:before,
+.v-mini-audio .audio-control.pause:after {
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  width: .1em;
+  height: .4em;
+  background-color: #f30;
+}
+.v-mini-audio .audio-control.pause:before {
+  left: .2em;
+}
+.v-mini-audio .audio-control.pause:after {
+  right: .2em;
+}
