@@ -5,6 +5,7 @@
   height: 1em;
   border-radius: 50%;
   background: #0cc;
+  user-select: none;
 }
 .v-mini-audio audio {
   display: none !important;
