@@ -4,6 +4,8 @@
 		return;
 	}
 
+	loadStyle('styles/miniAudio.css');
+
 	var audioHTML = '' +
 		'<div class="v-mini-audio">' +
 		'<div class="audio-left"><div class="inner"></div></div>' +
@@ -16,15 +18,27 @@
 		el.style[name] = value;
 	}
 
+	function loadStyle(src) {
+		var scripts = document.getElementsByTagName('script');
+		var path = scripts[scripts.length - 1].src.split('?')[0];
+		cssPath = path.split('/').slice(0, -2).join('/') + '/' + src;
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = cssPath;
+		document.head.appendChild(link);
+	}
+
 	function miniAudio(oTag) {
 		this.oTag = oTag;
 		var src = oTag.getAttribute('src');
 		if (!src) return;
-		window.hahha = this.audio = new Audio(src);
+		this.audio = new Audio(src);
 		this.init();
 	}
+	miniAudio.prototype.audioContainer = [];
 	miniAudio.prototype.init = function() {
 		var self = this;
+		this.audioContainer.push(this);
 		this.render();
 		this.mACtrl = this.mA.querySelector('.audio-control');
 		this.mALeftInner = this.mA.querySelector('.audio-left .inner');
@@ -58,8 +72,10 @@
 	};
 	miniAudio.prototype.play = function() {
 		this.audio.play();
+		if(this.audio.paused) return;
 		this.mACtrl.classList.add('pause');
 		this.mACtrl.classList.remove('play');
+		this.pauseOther();
 	};
 	miniAudio.prototype.pause = function() {
 		this.audio.pause();
@@ -70,6 +86,14 @@
 		this.audio.currentTime = 0;
 		this.pause();
 	};
+	miniAudio.prototype.pauseOther = function() {
+		var audios = this.audioContainer;
+		for(var i = 0; i < audios.length; i++){
+			if(audios[i] !== this){
+				audios[i].pause();
+			}
+		}
+	}
 
 	var mAs = [].slice.apply(document.getElementsByTagName('miniAudio'));
 	var len = mAs.length;
