@@ -4,7 +4,7 @@
 		return;
 	}
 
-	loadStyle('styles/miniAudio.css');
+	loadStyle('css/miniAudio.css');
 
 	var audioHTML = '' +
 		'<div class="v-mini-audio">' +

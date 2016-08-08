@@ -1,5 +1,7 @@
 .v-mini-audio {
   position: relative;
+  display: inline-block;
+  vertical-align: middle;
   font-size: 30px;
   width: 1em;
   height: 1em;
